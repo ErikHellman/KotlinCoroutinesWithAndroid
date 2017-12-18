@@ -18,18 +18,17 @@ import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.channels.ReceiveChannel
 import kotlinx.coroutines.experimental.channels.produce
-import kotlinx.coroutines.experimental.launch
 import java.util.concurrent.atomic.AtomicInteger
 
-class MainActivity : AppCompatActivity() {
+class ProducerActivity : AppCompatActivity() {
   data class Cat(val id: Int, val uri: String, val photo: Bitmap)
 
   fun loge(e: Throwable, message: () -> String) {
-    Log.e("MainActivity", message(), e)
+    Log.e("ProducerActivity", message(), e)
   }
 
   fun logd(message: () -> String) {
-    Log.d("MainActivity", message())
+    Log.d("ProducerActivity", message())
   }
 
   private var channel: ReceiveChannel<Cat>? = null
@@ -51,13 +50,7 @@ class MainActivity : AppCompatActivity() {
     logd { "Load photos!" }
     val number = AtomicInteger(0)
     channel = produce {
-      val queryDatabase = queryDatabase()
-      val cursor = object : Cursor by queryDatabase {
-        override fun close() {
-          logd { "Closing!" }
-          queryDatabase.close()
-        }
-      }
+      val cursor = queryDatabase()
 
       cursor.use {
         while (it.moveToNext()) {
@@ -81,10 +74,7 @@ class MainActivity : AppCompatActivity() {
 
   override fun onDestroy() {
     super.onDestroy()
-    channel?.let {
-      logd { "Cancelling channel!" }
-      it.cancel()
-    }
+    channel?.cancel()
   }
 
   private fun queryDatabase(): Cursor {

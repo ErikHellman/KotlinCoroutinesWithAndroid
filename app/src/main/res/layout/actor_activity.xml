@@ -4,31 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="se.hellsoft.kotlincoroutines.ProducerActivity">
+    tools:context="se.hellsoft.kotlincoroutines.ActorActivity">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/jobButton"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
-        android:clickable="true"
-        app:elevation="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_add_black_24dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/listOfCats"
+    <TextView
+        android:id="@+id/jobText"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintBottom_toTopOf="@+id/jobButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/cat_card" />
-
-
+        tools:text="Job started..." />
 </android.support.constraint.ConstraintLayout>

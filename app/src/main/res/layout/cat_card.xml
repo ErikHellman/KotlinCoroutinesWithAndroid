@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
-    app:cardPreventCornerOverlap="true"
+    app:cardCornerRadius="4dp"
     app:cardElevation="4dp"
-    app:cardCornerRadius="4dp">
+    app:cardPreventCornerOverlap="true">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
